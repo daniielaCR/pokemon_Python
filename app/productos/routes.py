@@ -4,6 +4,7 @@ import app
 import os
 from .forms import NewProductForm, EditProductForm
 
+
 @productos.route('/create', methods=['GET','POST'])
 def crear(): 
     p = app.models.Producto()
@@ -38,17 +39,22 @@ def editar(producto_id):
     if form.validate_on_submit():
         form.populate_obj(p)
         app.db.session.commit()
-        flash('producto actualizad')
+        flash('producto actualizado')
         return redirect('/productos/listar')
     return render_template('new.html',
-                    form = form)
+                    form = form, p = p)
 
    
 
-@productos.route('/eliminar/<producto_id>',)                
+@productos.route('/eliminar/<producto_id>', methods = ['GET', 'POST'])                
 def eliminar(producto_id):
     p = app.models.Producto.query.get(producto_id)
     app.db.session.delete(p)
     app.db.session.commit()
     flash('producto eliminado')
     return redirect('/productos/listar')
+
+
+
+                    
+

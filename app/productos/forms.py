@@ -27,4 +27,10 @@ class EditProductForm(FlaskForm,
                       ProductForm):
     submit = SubmitField("Actualizar")
     
+
+
+     
+     
+     
+    
     
